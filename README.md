@@ -29,6 +29,16 @@ skills/
 
 Each skill is self-contained. Read its `SKILL.md` first, then use its supporting files and scripts.
 
+## Installation
+
+To copy the skills into a project with the Skills installer:
+
+```bash
+npx skills@latest add billchen0/BIL-skills
+```
+
+Choose `lab-meeting-slides` when prompted. The root `skills/` layout is compatible with the Skills installer workflow.
+
 ## Development
 
 The slide skill is intentionally local and editable. It uses `python-pptx` and Pillow, with no external data or credentials. See the skill README for installation and build commands.
