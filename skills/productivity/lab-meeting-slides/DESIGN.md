@@ -1,41 +1,49 @@
-# Design system
+# Lab meeting HTML design-system contract
 
 ## Visual thesis
 
-Make research legible before making it decorative. Use a pale blue-gray field, navy hierarchy, one blue or teal emphasis, and generous white space. The system should feel academic, calm, and editable.
+Calm academic biomedical-research communication: pale blue-gray canvas, dark navy hierarchy, blue milestones, teal active/current emphasis, white rounded surfaces, cool-gray lines, restrained shadows, neutral sans-serif typography, generous whitespace, and a horizontal trajectory motif. The system should feel like an inspectable design-system tool.
 
-## Tokens and grid
+## Exact starting tokens
 
-`tokens.json` is the source of truth. A 0.5 inch outer margin and 0.28 inch gutters create a 12-column mental grid on a 13.333 × 7.5 inch canvas. Cards align to that grid and should not crowd the footer.
+| Semantic token | Value |
+|---|---|
+| canvas | `#F7F8FC` |
+| navy | `#08255B` |
+| blue | `#0D5D8C` |
+| teal | `#16A6A1` |
+| muted | `#5E6B82` |
+| line | `#CBD4E1` |
+| surface | `#FFFFFF` |
+
+These live in `design-system/tokens.css` with the type scale, spacing, radii, shadow, fixed-stage, and timeline geometry tokens.
 
 ## Typography and spacing
 
-Titles are 30 pt, section labels 18 pt, subtitles 17 pt, body 14 pt, small labels 10 pt, and metrics 26 pt. Use Aptos or Arial. Prefer fewer words over smaller type. Use spacing tokens consistently: compact card padding, visible section gaps, and a quiet footer.
+Use the neutral system sans stack. The scale is 112px hero, 72px slide title, 48px section title, 34px body, 28px small body, and 22px metadata. Use an 8px spacing unit, 12/20/32px radii, and restrained shadows. Body copy should usually be at least 28px on a 1920px stage.
 
-## Color usage
+## Fixed stage and responsive behavior
 
-Navy carries headings and primary anchors. Blue supports secondary anchors and timeline nodes. Teal marks one active state or key takeaway. Muted text supports explanatory copy. White is reserved for editable surfaces. Lines are low-contrast separators, not decoration.
+Every slide is a fixed `1920px × 1080px` stage with a 16:9 ratio. The outer workspace and deck viewport may reflow and scale. Slide content scales uniformly as a whole; it must not reflow into mobile columns or change internal geometry.
 
-## Card rules
+## Component anatomy
 
-Use white rounded cards with a thin line and very restrained shadow. Cards group content that belongs together. Keep one main idea per card, with a short label and clear body hierarchy. Avoid dense dashboard grids.
+Shared classes cover slide shell, top badge, title block, avatar/profile area, role badge, logo card/cluster, timeline rail/node, step badge, section label, headings, body/list, callout, metric, figure placeholder, comparison columns, and footer/page number. Add a component only when it is reusable and semantic.
 
-## Footer and page numbering
+## Slide-format registry
 
-Use a small lab or meeting label at lower left and a rounded page badge at lower right. Page numbers are two digits. Keep footer elements quiet and consistent.
+`slides/slide-formats.js` registers Title, Section divider, Research update, Methods / workflow, Results + takeaway, Comparison, Timeline / next steps, Discussion / decision, Closing, and Profile timeline with purposes and source class hooks. The Slides tab in `design-system/index.html` is the canonical layout gallery; the example deck uses the same hooks.
 
-## Data and figures
+## Accessibility and motion
 
-Figures should be editable when possible and should include a plain-language takeaway. Placeholder art is abstract only. Add source notes and uncertainty where relevant. Never imply a result from a decorative placeholder.
+Use semantic headings, landmark navigation, meaningful `aria-label`s, keyboard-accessible tabs, and keyboard deck navigation. Never communicate status with color alone. Deck switching uses opacity, visibility, and pointer-events rather than `display:none`. Respect `prefers-reduced-motion: reduce`.
 
-## Accessibility
+## Content density
 
-Maintain strong navy-on-light contrast, do not use color alone to encode meaning, keep labels descriptive, preserve reading order, and use at least 14 pt body text. Supply alt text and source notes when replacing placeholders with figures.
+One dominant idea per slide. Prefer one short paragraph, three to five bullets, or one figure plus one takeaway. Use explicit labels such as “Current focus” and “Decision needed”. Keep examples generic and use abstract placeholders rather than fabricated data.
 
 ## Do / don't
 
-- Do use one accent color for emphasis; don't use a rainbow palette.
-- Do align cards to the grid; don't float disconnected panels.
-- Do write direct topic titles; don't use slogans or filler narration.
-- Do keep figures and labels editable; don't paste screenshots when a native object works.
-- Do supply official logos yourself; don't assume the library includes institutional branding.
+Do use tokens, shared classes, direct titles, whitespace, and a clear next action. Add approved lab assets only in consuming projects.
+
+Don't add personal photos, employer or institutional marks, fake data, dashboard-like decoration, dense prose, or arbitrary colors. Don't create PowerPoint/PPTX artifacts: HTML is the target medium unless a user separately requests an export.

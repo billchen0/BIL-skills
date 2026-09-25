@@ -1,39 +1,38 @@
-# Lab Meeting Slide Library
+# Lab Meeting HTML Slide System
 
-A reusable, open-source PowerPoint toolkit for lab meetings, research updates, methods discussions, and decisions. It carries a light academic visual language: pale blue-gray canvas, deep navy type, blue and teal accents, white rounded cards, restrained shadows, clear sans-serif hierarchy, and 16:9 widescreen slides.
+An HTML-first design-system workspace and fixed-stage slide template library for research and lab meetings. It generates HTML slides, not PowerPoint files.
 
 ## Quick start
 
 ```bash
-python3 -m pip install -r requirements.txt
-python3 scripts/build_template.py
-python3 -m pytest -q
-python3 scripts/render_previews.py
+npx skills@latest add billchen0/BIL-skills
 ```
 
-Open `preview/index.html` locally for a visual catalog. Generated decks live in `templates/` and `examples/`.
+Choose `lab-meeting-slides`. From this directory, run `python3 -m http.server 8000`, then open `http://localhost:8000/design-system/index.html` or `http://localhost:8000/slides/example-lab-meeting.html`. Direct file opening also works in modern browsers.
+
+The Design System workspace is the visual catalog; the example deck is a functional generic reference.
 
 ## File map
 
-- `src/lab_meeting_slides/library.py`: reusable python-pptx API and deck builders
-- `tokens.json`: semantic design tokens
+- `design-system/tokens.css`, `components.css`, `slides.css`: shared design tokens and HTML classes
+- `design-system/index.html`: central workspace and canonical Slides gallery
+- `slides/slide-formats.js`: shared slide-format registry
+- `slides/example-lab-meeting.html`: functional generic HTML deck
 - `DESIGN.md`: visual and accessibility system
-- `scripts/build_template.py`: builds the editable template and generic demo
-- `scripts/render_previews.py`: optional LibreOffice rendering and contact sheet
-- `preview/index.html`: self-contained visual reference
-- `tests/test_library.py`: smoke coverage for all formats
+- `scripts/validate.py`: dependency-free validator
+- `tests/test_structure.py`: structural tests
 
 ## Supported slide formats
 
-Title, section divider, research update, methods/workflow, results with figure and takeaway, comparison, timeline/next steps, discussion/decision, and closing. Components also cover title blocks, labels, footers, cards, pills, bullets, figure placeholders, callouts, timelines, metrics, columns, and chart insertion.
+Title, section divider, research update, methods/workflow, results with figure and takeaway, comparison, timeline/next steps, discussion/decision, closing, and profile timeline. Components also cover title blocks, labels, footers, cards, pills, bullets, figure placeholders, callouts, timelines, metrics, columns, and chart insertion.
 
 ## Customize
 
-Edit `tokens.json` to change semantic colors, sizes, spacing, radii, and shadow values. Pass a token dictionary to `Library(...)` or use the helper functions directly. Keep content generic in the library and supply lab-specific text, figures, logos, and citations in your own deck.
+Edit the CSS custom properties and registry. Keep content generic in the library and supply lab-specific text, figures, logos, and citations in your own deck.
 
 ## Build
 
-The module uses `python-pptx`, inches internally, and a built-in-font stack of Aptos with Arial fallback. The build script emits editable PowerPoint objects and a small abstract figure placeholder rather than fabricated scientific data.
+Slides use fixed 1920×1080 HTML stages that scale uniformly to the viewport. The design system is dependency-free.
 
 ## Licensing and asset notes
 

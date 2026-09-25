@@ -4,7 +4,7 @@ A small collection of reusable skills for Bill's research and lab workflows.
 
 ## Included skills
 
-- [`lab-meeting-slides`](./skills/productivity/lab-meeting-slides/SKILL.md): create and extend an editable PowerPoint slide library for lab meetings, research updates, methods discussions, results, and decisions.
+- [`lab-meeting-slides`](./skills/productivity/lab-meeting-slides/SKILL.md): create and reuse an HTML-first design system and fixed 16:9 HTML slide library for lab meetings, research updates, methods discussions, results, and decisions.
 
 ## Repository layout
 
@@ -18,12 +18,9 @@ skills/
       SKILL.md
       agents/openai.yaml
       DESIGN.md
-      tokens.json
-      src/
+      design-system/
+      slides/
       scripts/
-      templates/
-      examples/
-      preview/
       tests/
 ```
 
@@ -41,7 +38,7 @@ Choose `lab-meeting-slides` when prompted. The root `skills/` layout is compatib
 
 ## Development
 
-The slide skill is intentionally local and editable. It uses `python-pptx` and Pillow, with no external data or credentials. See the skill README for installation and build commands.
+The slide skill is intentionally local, editable, and dependency-free. Open `design-system/index.html` for the central workspace and Slides gallery, or `slides/example-lab-meeting.html` for a functional HTML deck. See the skill README for local usage and validation commands. PowerPoint/PPTX is intentionally not the target medium.
 
 ## License
 
